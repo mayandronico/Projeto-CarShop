@@ -50,4 +50,14 @@ describe('ReadOne', () => {
     expect((res.json as sinon.SinonStub).calledWith(CarMockTestWhithId)).to.be.true;
   });
 });
+
+describe('Read', () => {
+  it('Success', async () => {
+    req.params = { id: CarMockTestWhithId._id };
+    await carController.read(req, res);
+
+    expect((res.status as sinon.SinonStub).calledWith(200)).to.be.true;
+    expect((res.json as sinon.SinonStub).calledWith(CarMockTestWithIdMany)).to.be.true;
+  });
+});
 });
