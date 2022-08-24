@@ -11,7 +11,7 @@ const carController = new CarController(carService);
 
 carsRouter.post('/cars', (req, res) => carController.create(req, res));
 carsRouter.get('/cars', (req, res) => carController.read(req, res));
-carsRouter.get('/cars/id', (req, res) => carController.readOne(req, res));
+carsRouter.get('/cars/:id', (req, res) => carController.readOne(req, res));
 // carsRouter.put('/cars/id', (req, res) => carController.update(req, res));
 // carsRouter.put('/cars/id', (req, res) => carController.delete(req, res));
 
