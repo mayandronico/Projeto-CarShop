@@ -19,7 +19,7 @@ describe('Camada Controller - Car', () => {
     const next = {} as NextFunction;
 
   before(() => {
-    sinon.stub(carService, 'create').resolves(CarMockTestWhithId);
+    sinon.stub(carService, 'create').resolves(CarMockTest);
     sinon.stub(carService, 'read').onCall(0).resolves(CarMockTestWithIdMany);
     sinon.stub(carService, 'readOne').resolves(CarMockTestWhithId);
     
@@ -31,10 +31,23 @@ describe('Camada Controller - Car', () => {
     sinon.restore();
   })
 
+  describe('Create', () => {
   it('Success', async () => {
     req.body = CarMockTest;
     await carController.create(req, res);
+
     expect((res.status as sinon.SinonStub).calledWith(201)).to.be.true;
     expect((res.json as sinon.SinonStub).calledWith(CarMockTest)).to.be.true;
   });
+});
+
+describe('ReadOne', () => {
+  it('Success', async () => {
+    req.params = { id: CarMockTestWhithId._id };
+    await carController.readOne(req, res);
+
+    expect((res.status as sinon.SinonStub).calledWith(200)).to.be.true;
+    expect((res.json as sinon.SinonStub).calledWith(CarMockTestWhithId)).to.be.true;
+  });
+});
 });
