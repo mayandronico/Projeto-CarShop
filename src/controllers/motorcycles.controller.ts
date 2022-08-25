@@ -1,24 +1,34 @@
-// import { Request, Response } from 'express';
-// import IService from '../interfaces/IService';
-// import { IMotorcycle } from '../interfaces/IMotorcycle';
+import { Request, Response } from 'express';
+import IService from '../interfaces/IService';
+import { IMotorcycle } from '../interfaces/IMotorcycle';
 
-// export default class CarController {
-//   constructor(private _service: IService<IMotorcycle>) { }
+export default class MotorcycleController {
+  constructor(private _service: IService<IMotorcycle>) { }
 
-//   public async create(req: Request & 
-//   { body:IMotorcycle }, res: Response<IMotorcycle>) {
-//     const car = await this._service.create(req.body);
-//     return res.status(201).json(car);
-//   }
+  public async create(req: Request & 
+  { body:IMotorcycle }, res: Response<IMotorcycle>) {
+    const moto = await this._service.create(req.body);
+    return res.status(201).json(moto);
+  }
 
-//   public async read(req: Request &
-//   { body:IMotorcycle }, res: Response<IMotorcycle[]>) {
-//     const result = await this._service.read();
-//     return res.status(200).json(result);
-//   }
+  public async read(req: Request &
+  { body:IMotorcycle }, res: Response<IMotorcycle[]>) {
+    const result = await this._service.read();
+    return res.status(200).json(result);
+  }
 
-//   public async readOne(req: Request, res: Response<IMotorcycle>) {
-//     const result = await this._service.readOne(req.params.id);
-//     return res.status(200).json(result);
-//   }
-// }
+  public async readOne(req: Request, res: Response<IMotorcycle | null>) {
+    const moto = await this._service.readOne(req.params.id);
+    return res.status(200).json(moto);
+  }
+
+  public async update(req: Request, res: Response<IMotorcycle | null>) {
+    const upMoto = await this._service.update(req.params.id, req.body);
+    return res.status(200).json(upMoto);
+  }
+
+  public async delete(req: Request, res: Response<IMotorcycle | null>) {
+    const deleteMoto = await this._service.delete(req.params.id);
+    return res.status(204).json(deleteMoto);
+  }
+}

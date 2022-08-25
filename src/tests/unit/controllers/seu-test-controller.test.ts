@@ -59,15 +59,4 @@ describe('Read', () => {
     expect((res.json as sinon.SinonStub).calledWith(CarMockTestWithIdMany)).to.be.true;
   });
 });
-
-// describe('Update', () => {
-//   it('Quando a atualização é realizada com sucesso', async () => {
-//     req.params = { id: CarMockTestWhithId._id };
-//     req.body = CarMockTest
-//     await carController.update(req, res);
-
-//     expect((res.status as sinon.SinonStub).calledWith(200)).to.be.true;
-//     expect((res.json as sinon.SinonStub).calledWith(CarMockTest)).to.be.true;
-//   });
-// });
 });

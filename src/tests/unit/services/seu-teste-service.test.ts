@@ -68,12 +68,4 @@ describe('Camada Service - Car', () => {
 			}
 		});
 	});
-
-	// describe('Update', () => {
-	// 	it('Success', async () => {
-	// 	  const cars = await carService.update('4edd40c86762e0fb12000003', CarMockTest);
-	// 	  expect(cars).to.be.deep.equal(CarMockTestWhithId);
-	// 	});
-	// });
-
 });
