@@ -32,7 +32,7 @@ describe('Camada Controller - Car', () => {
   })
 
   describe('Create', () => {
-  it('Success', async () => {
+  it('Quando a criação é realizada com sucesso', async () => {
     req.body = CarMockTest;
     await carController.create(req, res);
 
@@ -42,7 +42,7 @@ describe('Camada Controller - Car', () => {
 });
 
 describe('ReadOne', () => {
-  it('Success', async () => {
+  it('Quando a busca por id é ralizada com sucesso', async () => {
     req.params = { id: CarMockTestWhithId._id };
     await carController.readOne(req, res);
 
@@ -52,7 +52,7 @@ describe('ReadOne', () => {
 });
 
 describe('Read', () => {
-  it('Success', async () => {
+  it('Quando a busca é realizada com sucesso', async () => {
     req.params = { id: CarMockTestWhithId._id };
     await carController.read(req, res);
 
@@ -60,4 +60,15 @@ describe('Read', () => {
     expect((res.json as sinon.SinonStub).calledWith(CarMockTestWithIdMany)).to.be.true;
   });
 });
+
+// describe('Update', () => {
+//   it('Quando a atualização é realizada com sucesso', async () => {
+//     req.params = { id: CarMockTestWhithId._id };
+//     req.body = CarMockTest
+//     await carController.update(req, res);
+
+//     expect((res.status as sinon.SinonStub).calledWith(200)).to.be.true;
+//     expect((res.json as sinon.SinonStub).calledWith(CarMockTest)).to.be.true;
+//   });
+// });
 });

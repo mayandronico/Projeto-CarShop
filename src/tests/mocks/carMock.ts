@@ -1,7 +1,7 @@
 import { ICar } from '../../interfaces/ICar';
 
 const CarMockTest: ICar = {
-  model: 'Ferrari Maranello',
+  model: 'Ferrari Maranello 1000',
   year: 1963,
   color: 'red',
   buyValue: 3500000,

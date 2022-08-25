@@ -5,6 +5,7 @@ import { CarMockTest, CarMockTestWhithId, CarMockTestWithIdMany } from '../../mo
 import CarService from '../../../services/cars.service';
 import CarModel from '../../../models/CarModel';
 import { ZodError } from 'zod';
+import { ErrorTypes } from '../../../errors/catalog';
 
 describe('Camada Service - Car', () => {
 	const carModel = new CarModel();
@@ -22,13 +23,13 @@ describe('Camada Service - Car', () => {
 		sinon.restore()
 	})
 	describe('Create', () => {
-		it('Success', async () => {
-			const frameCreated = await carService.create(CarMockTest);
+		it('Quando a criação é realizada com sucesso', async () => {
+			const carCreated = await carService.create(CarMockTest);
 
-			expect(frameCreated).to.be.deep.equal(CarMockTest);
+			expect(carCreated).to.be.deep.equal(CarMockTest);
 		});
 
-		it('Failure', async () => {
+		it('Quando a criação falha', async () => {
 			try {
 				await carService.create({} as any);
 			} catch (error) {
@@ -36,5 +37,44 @@ describe('Camada Service - Car', () => {
 			}
 		});
 	});
+
+	describe('Read', () => {
+		it('Quando a busca é realizada com sucesso', async () => {
+			const cars = await carService.read();
+
+			expect(cars).to.be.deep.equal(CarMockTestWithIdMany);
+		});
+
+		it('Quando a busca por id falha', async () => {
+			try {
+				await carService.read();
+			} catch (error:any) {
+				expect(error.message).to.be.deep.equal(ErrorTypes.EntityNotFound);
+			}
+		});
+	});
+
+	describe('ReadOne', () => {
+		it('Quando a busca por id é realizada com sucesso', async () => {
+			const carById = await carService.readOne(CarMockTestWhithId._id);
+
+			expect(carById).to.be.deep.equal(CarMockTest);
+		});
+
+		it('Quando a busca por id falha', async () => {
+			try {
+				await carService.readOne(CarMockTestWhithId._id);
+			} catch (error:any) {
+				expect(error.message).to.be.deep.equal(ErrorTypes.EntityNotFound);
+			}
+		});
+	});
+
+	// describe('Update', () => {
+	// 	it('Success', async () => {
+	// 	  const cars = await carService.update('4edd40c86762e0fb12000003', CarMockTest);
+	// 	  expect(cars).to.be.deep.equal(CarMockTestWhithId);
+	// 	});
+	// });
 
 });
