@@ -1,4 +1,3 @@
-// template para criação dos testes de cobertura da camada de service
 import * as sinon from 'sinon';
 import { expect } from 'chai';
 import { CarMockTest, CarMockTestWhithId, CarMockTestWithIdMany } from '../../mocks/carMock';
